@@ -113,27 +113,46 @@ public class PdfService : IPdfService
 
                         // ===============================
                         // QR INFERIOR
-                        // ===============================                        
-                        column.Item().PaddingTop(20).AlignCenter().Width(90).Height(90).Image(qrPath);
+                        // ===============================
+                        //column.Item().PaddingTop(20).AlignCenter().Width(90).Height(90).Image(qrPath);
                     });
 
                     // =====================================
                     // BARCODE DERECHO
                     // =====================================
-                    row.ConstantItem(55).Height(260).Row(inner =>
+                    //row.ConstantItem(55).Height(260).Row(inner =>
+                    //{
+                    //    // ==========================
+                    //    // BARCODE DERECHO
+                    //    // ==========================
+                    //    inner.RelativeItem().Element(container =>
+                    //    {
+                    //        container.ScaleToFit().Image(File.ReadAllBytes(derechaPath));
+                    //    });
+
+                    //    // ==========================
+                    //    // TEXTO DERECHO
+                    //    // ==========================
+                    //    inner.ConstantItem(12).Height(260).PaddingBottom(65).AlignCenter().AlignMiddle().RotateRight().Text(model.Codigo).FontSize(7).Bold();
+                    //});
+
+                    // ===============================
+                    // QR DERECHO
+                    // ===============================
+                    row.ConstantItem(90).Height(260).Column(column =>
                     {
                         // ==========================
-                        // BARCODE DERECHO
+                        // QR DERECHO
                         // ==========================
-                        inner.RelativeItem().Element(container =>
+                        column.Item().AlignCenter().Width(80).Height(80).Element(container =>
                         {
-                            container.ScaleToFit().Image(File.ReadAllBytes(derechaPath));
+                            container.ScaleToFit().Image(File.ReadAllBytes(qrPath));
                         });
 
                         // ==========================
-                        // TEXTO DERECHO
+                        // TEXTO QR DERECHO
                         // ==========================
-                        inner.ConstantItem(12).Height(260).PaddingBottom(65).AlignCenter().AlignMiddle().RotateRight().Text(model.Codigo).FontSize(7).Bold();
+                        column.Item().PaddingTop(5).AlignCenter().Text(model.Codigo).FontSize(7).Bold();
                     });
                 });
             });
