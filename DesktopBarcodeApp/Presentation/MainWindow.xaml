@@ -48,11 +48,17 @@
                     Orientation="Horizontal"
                     HorizontalAlignment="Center"
                     Margin="0,20,0,0">
+            
+            <ComboBox x:Name="cmbPrinters"
+                      Width="150"
+                      Height="40"
+                      Margin="20,0,0,0"/>
 
             <Button x:Name="btnImprimir"
                     Content="Imprimir"
                     Width="150"
                     Height="40"
+                    Margin="20,0,0,0"
                     Click="btnImprimir_Click"/>
 
             <Button x:Name="btnPdf"

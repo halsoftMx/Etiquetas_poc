@@ -7,7 +7,7 @@ namespace DesktopBarcodeApp.Application.Services;
 
 public class PdfService : IPdfService
 {
-    public void GenerarPdf(EtiquetaModel model, string ruta)
+    public string GenerarPdf(EtiquetaModel model, string ruta)
     {
         BarcodeService barcodeService = new BarcodeService();
 
@@ -157,5 +157,7 @@ public class PdfService : IPdfService
                 });
             });
         }).GeneratePdf(ruta);
+
+        return ruta;
     }
 }

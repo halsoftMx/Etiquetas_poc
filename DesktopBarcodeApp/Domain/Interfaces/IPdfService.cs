@@ -4,6 +4,6 @@ namespace DesktopBarcodeApp.Domain.Interfaces
 {
     public interface IPdfService
     {
-        void GenerarPdf(EtiquetaModel model, string ruta);
+        string GenerarPdf(EtiquetaModel model, string ruta);
     }
 }

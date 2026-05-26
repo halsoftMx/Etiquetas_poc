@@ -1,7 +1,9 @@
-﻿using System.Text;
-using DesktopBarcodeApp.Domain.Interfaces;
+﻿using DesktopBarcodeApp.Domain.Interfaces;
 using DesktopBarcodeApp.Domain.Models;
 using DesktopBarcodeApp.Infrastructure.Printing;
+using System.Diagnostics;
+using System.Printing;
+using System.Text;
 
 namespace DesktopBarcodeApp.Application.Services;
 
@@ -12,6 +14,33 @@ public class PrinterService : IPrinterService
     public PrinterService(string printerName)
     {
         _printerName = printerName;
+    }
+
+    public List<string> ObtenerImpresoras()
+    {
+        List<string> impresoras = new();
+
+        LocalPrintServer server = new LocalPrintServer();
+
+        foreach (PrintQueue printer in server.GetPrintQueues())
+        {
+            impresoras.Add(printer.Name);
+        }
+
+        return impresoras;
+    }
+
+    public void ImprimirPdf(string pdfPath)
+    {
+        ProcessStartInfo info = new ProcessStartInfo
+        {
+            Verb = "print",
+            FileName = pdfPath,
+            CreateNoWindow = true,
+            WindowStyle = ProcessWindowStyle.Hidden
+        };
+
+        Process.Start(info);
     }
 
     public void Imprimir(EtiquetaModel model)
