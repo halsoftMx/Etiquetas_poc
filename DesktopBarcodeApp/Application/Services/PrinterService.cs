@@ -34,8 +34,9 @@ public class PrinterService : IPrinterService
     {
         ProcessStartInfo info = new ProcessStartInfo
         {
-            Verb = "print",
             FileName = pdfPath,
+            Verb = "print",
+            UseShellExecute = true,
             CreateNoWindow = true,
             WindowStyle = ProcessWindowStyle.Hidden
         };
