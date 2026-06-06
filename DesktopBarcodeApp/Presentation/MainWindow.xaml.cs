@@ -72,7 +72,9 @@ public partial class MainWindow : Window
             return;
         }
 
-        _printerService.ImprimirPdf(ultimoPdf);
+        string printer = cmbPrinters.SelectedItem?.ToString();
+
+        _printerService.ImprimirPdf(ultimoPdf, printer);
     }
 
     private void btnPdf_Click(object sender, RoutedEventArgs e)

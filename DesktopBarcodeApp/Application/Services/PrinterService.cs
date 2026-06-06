@@ -30,12 +30,13 @@ public class PrinterService : IPrinterService
         return impresoras;
     }
 
-    public void ImprimirPdf(string pdfPath)
+    public void ImprimirPdf(string pdfPath, string printerName)
     {
         ProcessStartInfo info = new ProcessStartInfo
         {
             FileName = pdfPath,
-            Verb = "print",
+            Verb = "printto",
+            Arguments = $"\"{printerName}\"",
             UseShellExecute = true,
             CreateNoWindow = true,
             WindowStyle = ProcessWindowStyle.Hidden
